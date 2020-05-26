@@ -82,13 +82,17 @@ int DoubleCircularList<T>::Remove(T data) {
 		do {
 			if (aux->GetData() == data) {
 				Node<T>* delete_node = aux;
-				if (First->GetNext() == First) {
-					First->SetNext(NULL);
+
+				if (First->GetNext() == First)
+				{
+					/* Borramos cuando solo haya un solo nodo en la lista. */
 					First = NULL;
 					Last = First;
-					//printf("%p, %p", aux, First);
+					delete First;
+					return 0;
 				}
-				else if (aux == First) {
+
+				if (aux == First) {
 					First = First->GetNext();
 					First->SetPrevious(Last);
 					Last->SetNext(First);
@@ -104,14 +108,13 @@ int DoubleCircularList<T>::Remove(T data) {
 				}
 				Found = 0;
 				aux = aux->GetNext();
-				//printf("%p, %p", aux, First);
 				delete delete_node;
+				continue;
 			}
-			else
-				aux = aux->GetNext();
-		} while (aux != First);
+			aux = aux->GetNext();
+			if (aux == First) break;
+		} while (true);
 	}
-	return Found;
 }
 template <class T>
 int DoubleCircularList<T>::Quantity() {

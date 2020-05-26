@@ -6,6 +6,9 @@ int main()
     DoubleCircularList<double> list;
 
     list.InsertInOrder(15.8);
+    list.InsertInOrder(15.8);
+    list.InsertInOrder(15.8);
+    list.InsertInOrder(15.8);
     list.InsertInOrder(16.8);
     list.InsertInOrder(16.8);
     list.InsertInOrder(16.8);
